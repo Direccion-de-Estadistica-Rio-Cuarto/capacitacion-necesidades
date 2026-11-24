@@ -49,3 +49,13 @@
 .opcion--bloqueada:hover { border-color: var(--borde); }
 .contador-seleccion { margin: .6rem 0 0; font-size: .9rem; color: var(--texto-suave); }
 .contador-seleccion--lleno { color: var(--texto); font-weight: 600; }
+
+/* --- 16.1 · Calendario de turnos de Google incrustado --------------------- */
+.calendario-turnos {
+  border: 1px solid var(--borde); border-radius: var(--radio-sm); overflow: hidden;
+  background: #fff;   /* el calendario de Google es siempre claro: evita bordes oscuros en modo oscuro */
+}
+.calendario-turnos iframe { display: block; width: 100%; height: 640px; border: 0; }
+.calendario-turnos__alternativa { margin: .5rem 0 0; }
+@media (max-width: 600px) { .calendario-turnos iframe { height: 720px; } }
+@media print { .calendario-turnos { display: none; } }

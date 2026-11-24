@@ -30,6 +30,11 @@ Armada sobre `plantilla-encuestas` a partir del documento «Modelo A · borrador
    3. Corré `node herramientas/generar-organigrama.js tmp/volcado.txt tmp`. Esto genera `p1.html` y `p2.html`.
    4. Reemplazá con ellos las opciones de los dos `<select>` de `index.html`.
 2. **Código del formulario del SGC.** Va en `data-codigo-formulario` y en un chip de la portada.
-3. **Turnos reales para 16.1.** Hoy se elige un día hábil desde mañana y un horario de 8 a 12 hs.
+3. **16.1 · Calendario de turnos.** Si en P16 se elige «Sí», se despliega incrustada la página de reservas de
+   Google Calendar (`https://calendar.app.google/FdNya2uyo6E3E66h9`). El iframe usa la versión embebible
+   (`…/calendar/appointments/schedules/…?gv=true`), porque el link corto no se puede incrustar. La reserva queda
+   en Google Calendar y no viaja con las respuestas de la encuesta. Si cambia el calendario, hay que actualizar
+   el `src` del iframe en `index.html`. En la vista previa local se ve en blanco porque el visor no sale a
+   internet; en GitHub Pages y en cualquier navegador se ve bien.
 4. **Endpoint a Google Sheets** (`data-endpoint`).
 5. **8.2 · Personas:** el documento arranca en «10 a 15» y no hay opción para menos de 10 personas. Conviene confirmarlo.

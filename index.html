@@ -1171,29 +1171,22 @@
           </div>
         </fieldset>
 
-        <!-- 16.1 · PROVISORIO: día hábil + turno. Reemplazar por los turnos reales cuando estén definidos. -->
-        <fieldset class="pregunta pregunta--sub" data-mostrar-si="p16_reunion=si" data-sin-extras data-sin-numero hidden>
-          <legend><span class="pregunta__numero">16.1</span>Elegí el día y la hora de la reunión</legend>
-          <p class="pregunta__meta">Día y horario · opcional</p>
-          <p class="pregunta__ayuda">De lunes a viernes. Te vamos a contactar para confirmarla.</p>
-          <div class="campos-grupo" data-agenda>
-            <div class="campo-grupo">
-              <label class="campo-etiqueta" for="p16-1-fecha">Día</label>
-              <input class="campo" id="p16-1-fecha" name="p16_1_fecha" type="date">
-            </div>
-            <div class="campo-grupo">
-              <label class="campo-etiqueta" for="p16-1-turno">Horario</label>
-              <select class="campo" id="p16-1-turno" name="p16_1_turno">
-                <option value="">Elegí un turno</option>
-                <option value="08:00">8:00 hs</option>
-                <option value="09:00">9:00 hs</option>
-                <option value="10:00">10:00 hs</option>
-                <option value="11:00">11:00 hs</option>
-                <option value="12:00">12:00 hs</option>
-              </select>
-            </div>
+        <!-- 16.1 · Calendario de turnos de Google (página de reservas).
+             Link corto: https://calendar.app.google/FdNya2uyo6E3E66h9 — no se puede incrustar
+             (Google lo bloquea en iframes); por eso se usa la versión «embebible» (?gv=true).
+             La reserva queda en Google Calendar, no en las respuestas de la encuesta.
+             loading="lazy": el calendario se carga recién cuando se elige «Sí». -->
+        <div class="pregunta pregunta--sub" data-mostrar-si="p16_reunion=si" data-sin-extras data-sin-numero hidden>
+          <p class="pregunta__enunciado"><span class="pregunta__numero">16.1</span>Elegí el día y la hora de la reunión</p>
+          <p class="pregunta__meta">Calendario de turnos · opcional</p>
+          <p class="pregunta__ayuda">Elegí un turno libre y completá tus datos en el calendario: te llega la confirmación por mail.</p>
+          <div class="calendario-turnos">
+            <iframe src="https://calendar.google.com/calendar/appointments/schedules/AcZssZ0J8_ydIpAK11Ze0-r6zyDtfjhIkQBbcdCaazE-QVnlty52kLIYMc8eO0PzTf9AesMybB7a9wP8?gv=true"
+                    title="Calendario de turnos para coordinar una reunión" loading="lazy"></iframe>
           </div>
-        </fieldset>
+          <p class="calendario-turnos__alternativa texto-chico">¿No se ve el calendario?
+            <a href="https://calendar.app.google/FdNya2uyo6E3E66h9" target="_blank" rel="noopener">Abrilo en otra pestaña</a>.</p>
+        </div>
       </section>
 
       <div class="aviso aviso--grave" id="aviso-error" role="alert" hidden>
