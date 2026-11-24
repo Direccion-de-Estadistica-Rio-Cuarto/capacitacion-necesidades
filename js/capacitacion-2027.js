@@ -199,9 +199,56 @@
       }
     }
 
+    /* ---------- Máximo de opciones (data-max): P6 hasta 3, P12 hasta 2 ----
+       Al llegar al máximo se deshabilitan las demás casillas y se avisa cuántas
+       van elegidas. Así no se puede marcar de más (antes solo avisaba al avanzar). */
+    $$('.pregunta[data-max]').forEach(function (p) {
+      var ancla = p.querySelector('.catalogo') || p.querySelector('.opciones');
+      if (ancla && !p.querySelector('.contador-seleccion')) {
+        ancla.insertAdjacentHTML('afterend', '<p class="contador-seleccion" aria-live="polite"></p>');
+      }
+    });
+    function actualizarMaximos() {
+      $$('.pregunta[data-max]').forEach(function (p) {
+        var max = +p.dataset.max;
+        var cajas = $$('input[type="checkbox"]', p).filter(function (c) { return c.value !== 'ns_nc'; });
+        var n = cajas.filter(function (c) { return c.checked; }).length;
+        var lleno = n >= max;
+        cajas.forEach(function (c) {
+          if (!c.checked) c.disabled = lleno;
+          c.closest('.opcion').classList.toggle('opcion--bloqueada', lleno && !c.checked);
+        });
+        var aviso = p.querySelector('.contador-seleccion');
+        if (aviso) {
+          aviso.textContent = lleno
+            ? 'Elegiste ' + n + ' de ' + max + '. Llegaste al máximo: para cambiar, desmarcá una.'
+            : 'Elegiste ' + n + ' de ' + max + '.';
+          aviso.classList.toggle('contador-seleccion--lleno', lleno);
+        }
+      });
+    }
+
+    /* ---------- Máximo de renglones (data-max-lineas): 6.1 hasta 3 ------ */
+    function lineas(t) { return t.split(/\r?\n/).filter(function (l) { return l.trim(); }).length; }
+    $$('textarea[data-max-lineas]').forEach(function (t) {
+      // No deja abrir un renglón más cuando ya están todos
+      t.addEventListener('keydown', function (e) {
+        if (e.key === 'Enter' && t.value.split(/\r?\n/).length >= +t.dataset.maxLineas) e.preventDefault();
+      });
+    });
+    function validarLineas() {
+      $$('textarea[data-max-lineas]').forEach(function (t) {
+        var max = +t.dataset.maxLineas, n = lineas(t.value);
+        t.setCustomValidity(n > max ? 'Escribí hasta ' + max + ' capacitaciones, una por renglón (ahora hay ' + n + ').' : '');
+        var c = t.parentNode.querySelector('.contador');
+        if (c) c.textContent = n + ' de ' + max + ' renglones · ' + t.value.length + ' / ' + t.maxLength;
+      });
+    }
+
     function validarCampos() {
       $$('[data-contacto]').forEach(validarContacto);
       $$('[data-agenda]').forEach(validarAgenda);
+      validarLineas();
     }
 
     // aplicarCondiciones habilita todo lo que está dentro de una condicional visible:
@@ -210,6 +257,8 @@
       E.aplicarCondiciones();
       actualizarListas();
       actualizarFilas();
+      actualizarMaximos();
+      validarLineas();   // después del contador de encuesta.js, que se actualiza en el mismo evento
     }
 
     // Validaciones en captura: los mensajes ya están al día cuando encuesta.js revalida

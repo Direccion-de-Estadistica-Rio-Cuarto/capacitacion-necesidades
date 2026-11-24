@@ -43,3 +43,9 @@
 .fila-capacitacion__titulo { margin: 0 0 .6rem; font-weight: 600; overflow-wrap: anywhere; }
 .fila-capacitacion__campos { display: grid; gap: .75rem 1rem; grid-template-columns: repeat(auto-fit, minmax(min(12rem, 100%), 1fr)); }
 .fila-capacitacion .campo { background: var(--fondo); }
+
+/* --- Máximo de opciones (P6, P12) y de renglones (6.1) ------------------- */
+.opcion--bloqueada { opacity: .5; cursor: not-allowed; }
+.opcion--bloqueada:hover { border-color: var(--borde); }
+.contador-seleccion { margin: .6rem 0 0; font-size: .9rem; color: var(--texto-suave); }
+.contador-seleccion--lleno { color: var(--texto); font-weight: 600; }
