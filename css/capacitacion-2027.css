@@ -1,0 +1,45 @@
+/* ==========================================================================
+   capacitacion-2027.css — Lo que suma la Encuesta de necesidades 2027 a
+   css/encuesta.css. Solo usa tokens existentes (se adapta al modo oscuro).
+   ========================================================================== */
+
+/* --- Subpreguntas condicionales (6.1, 8.1, 10.1…) -------------------------
+   Mismo patrón que la justificación desfavorable, pero en celeste: no es un
+   aviso, es la continuación de la pregunta anterior. Ocupa el mismo ancho
+   que el resto de las preguntas (sin sangría). */
+.pregunta.pregunta--sub {
+  margin: 0 0 1rem; padding: 1rem 1.1rem; border: 0; border-left: 4px solid var(--marca);
+  border-radius: var(--radio); background: var(--info-fondo);
+}
+.pregunta--sub .pregunta__numero { background: var(--superficie); color: var(--texto); border: 1px solid var(--marca); }
+.pregunta--sub .campo, .pregunta--sub .opcion { background: var(--superficie); }
+.pregunta--sub + .pregunta:not(.pregunta--sub) { border-top: 1px dashed var(--borde); }
+
+/* --- Catálogo de temas (P6 y P8) ----------------------------------------- */
+.catalogo__grupo {
+  margin: 1.25rem 0 .25rem; font-size: .8rem; font-weight: 700; letter-spacing: .04em;
+  text-transform: uppercase; color: var(--marca-enlace);
+}
+.catalogo > .catalogo__grupo:first-child { margin-top: 0; }
+.catalogo__eje { margin: .75rem 0 .4rem; font-size: .92rem; font-weight: 600; color: var(--texto-suave); }
+.catalogo__otro { margin-top: 1rem; }
+
+/* --- Campos con etiqueta propia (contacto, agenda, filas de 8.2) ---------- */
+.campos-grupo { display: grid; gap: .75rem 1rem; grid-template-columns: repeat(auto-fit, minmax(min(14rem, 100%), 1fr)); }
+.campo-grupo--ancho { grid-column: 1 / -1; }
+.campo-etiqueta { display: block; margin-bottom: .3rem; font-size: .9rem; font-weight: 600; }
+.campo--renglones { min-height: 5.5rem; }
+
+/* --- Lista con «Agregar otra» (8.1) --------------------------------------- */
+.lista { display: grid; gap: .5rem; }
+.lista__agregar { justify-self: start; margin-top: .15rem; }
+
+/* --- Tabla por capacitación (8.2) ----------------------------------------- */
+.filas { display: grid; gap: .65rem; }
+.filas > .pregunta__ayuda { margin: 0; }
+.fila-capacitacion {
+  padding: .85rem 1rem; border: 1px solid var(--borde); border-radius: var(--radio-sm); background: var(--superficie);
+}
+.fila-capacitacion__titulo { margin: 0 0 .6rem; font-weight: 600; overflow-wrap: anywhere; }
+.fila-capacitacion__campos { display: grid; gap: .75rem 1rem; grid-template-columns: repeat(auto-fit, minmax(min(12rem, 100%), 1fr)); }
+.fila-capacitacion .campo { background: var(--fondo); }
